@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import './App.css';
 import './components/NavBar.jsx'
 import './components/Tienda.jsx'
@@ -8,6 +7,7 @@ import ItemListContainer from './components/ItemListContainer.jsx';
 import Tienda from './components/Tienda.jsx';
 import Footer from './components/Footer.jsx';
 import ItemCount from './components/ItemCount.jsx';
+import Items from './components/Items.jsx';
 
 function App() {
   const saludo = 'Bienvenido/a a la Aplicación Web de Vizzentino Picadas.'
@@ -19,6 +19,8 @@ function App() {
       <ItemListContainer saludo = {saludo}/>
       <Tienda/>
       <ItemCount stock= {'20'} initial= {'1'} onAdd= {onAdd}/>
+      <br/>
+      <Items/>
       <Footer/>
     </>
   );
