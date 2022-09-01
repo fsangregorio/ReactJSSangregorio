@@ -6,11 +6,11 @@ export default function ItemCount({stock, initial, onAdd})
   const [contador, setContador] = useState(1);
  
   const subir = () => {
-        setContador(contador => contador + 1);
+      setContador(contador >= 20 ? setContador : contador + 1);
   };
  
   const bajar = () => {
-      setContador(contador => contador - 1);
+      setContador(contador <= 1 ? setContador : contador - 1);
   };
  
   const resetear = () =>{
@@ -20,6 +20,7 @@ export default function ItemCount({stock, initial, onAdd})
   return (
     <div style={{padding: '20px', textAlign: 'center', fontSize: '20px'}}>
         <div>Cantidad:</div>
+        <div>(Máximo 20 unidades)</div>
         <div>{contador}</div>
         <Button variant="danger" onClick={bajar} style={{margin: '20px', textAlign: 'center'}}>-</Button>        
         <Button variant="success" onClick={subir} style={{margin: '20px', textAlign: 'center'}}>+</Button>
