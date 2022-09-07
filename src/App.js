@@ -1,28 +1,27 @@
+
 import './App.css';
-import './components/NavBar.jsx'
-import './components/Tienda.jsx'
-import './components/Footer.jsx'
-import NavBar from './components/NavBar.jsx';
-import ItemListContainer from './components/ItemListContainer.jsx';
-import Tienda from './components/Tienda.jsx';
-import Footer from './components/Footer.jsx';
-import ItemCount from './components/ItemCount.jsx';
-import Items from './components/Items.jsx';
+import 'bootstrap/dist/css/bootstrap.css'
+import NavBar from './components/NavBar';
+import ItemListContainer from './components/ItemListContainer';
+import Footer from './components/Footer';
+import ItemDetailContainer from './components/ItemDetailContainer';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
 
 function App() {
-  const saludo = 'Bienvenido/a a la Aplicación Web de Vizzentino Picadas.'
-  function onAdd() {alert('El producto fue agregado correctamente.')}
-
-  return (
-    <>
-      <NavBar/>
-      <ItemListContainer saludo = {saludo}/>
-      <Tienda/>
-      <ItemCount stock= {'20'} initial= {'1'} onAdd= {onAdd}/>
-      <br/>
-      <Items/>
-      <Footer/>
-    </>
+  const saludo = 'Bienvenidos/as a la Tienda de Vizzentino'
+return (
+  <>
+  <BrowserRouter>
+    <NavBar/>
+      <Routes>
+      <Route path='/' element={ <ItemListContainer saludo={saludo} greeting='hello' />}/>
+          <Route path='/categoria/:categoriaId' element={ <ItemListContainer saludo={saludo} greeting='hello' />}/>
+          <Route path='/detalle/:id' element={<ItemDetailContainer/>}/>
+      </Routes>
+    <Footer/>
+  </BrowserRouter>
+  </>
   );
 }
 
