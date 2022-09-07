@@ -1,15 +1,26 @@
-import Items from '../components/Items.jsx';
+import React, {useEffect, useState} from 'react'
+import {data} from './data/data'
+import {useParams} from 'react-router-dom'
 
-  <div>
-    <Items/>
-  </div>
+const ItemListContainer = ({saludo, greeting}) => {
+  const [productList, setProductList]=useState([])
+  const [loading, setLoading]= useState(false)
+  const{categoriaId}= useParams()
 
-const ItemListContainer = (props) => {
-    return (
-      <div>
-        <p>{props.saludo}</p>
-      </div>
-    );
-  }
-  
-  export default ItemListContainer;
+useEffect(()=>{
+  setLoading(true)
+    data
+    .then((res)=>{
+      if(categoriaId){
+        setProductList(res.filter((item)=> item.category === categoriaId))
+      }else{
+        setProductList(res)
+      }
+    })
+    .catch((error)=> console.log(error))
+    .finally(()=> setLoading(false))
+  }, [categoriaId])
+}
+
+
+export default ItemListContainer

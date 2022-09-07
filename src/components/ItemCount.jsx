@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
-export default function ItemCount({stock, initial, onAdd})
+export default function ItemCount({initial, stock, onAdd})
 {
-  const [contador, setContador] = useState(1);
+  const [contador, setContador] = useState(initial);
  
   const subir = () => {
-      setContador(contador >= 20 ? setContador : contador + 1);
+      setContador(contador < stock ? setContador : contador + 1);
   };
  
   const bajar = () => {
-      setContador(contador <= 1 ? setContador : contador - 1);
+      setContador(contador > initial ? setContador : contador - 1);
   };
  
   const resetear = () =>{
@@ -20,7 +20,6 @@ export default function ItemCount({stock, initial, onAdd})
   return (
     <div style={{padding: '20px', textAlign: 'center', fontSize: '20px'}}>
         <div>Cantidad:</div>
-        <div>(Máximo 20 unidades)</div>
         <div>{contador}</div>
         <Button variant="danger" onClick={bajar} style={{margin: '20px', textAlign: 'center'}}>-</Button>        
         <Button variant="success" onClick={subir} style={{margin: '20px', textAlign: 'center'}}>+</Button>
